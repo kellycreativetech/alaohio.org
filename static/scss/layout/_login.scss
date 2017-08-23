@@ -1,0 +1,5 @@
+.l-login{
+	@include breakpoint($above-stacked, $no-query: '.old-ie'){
+	    @include span(6);
+	  }
+}

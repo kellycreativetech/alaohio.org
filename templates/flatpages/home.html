@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load inlines thumbnail treenav_tags frontendadmin_tags chunks staticfiles %}
+
+{% block bodyclass %}home{% endblock %}
+{% block site_title %}{{ block.super }}{% endblock %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+
+        {% block content %}
+              {{ flatpage.content|render_inlines|safe }}
+              {% frontendadmin_change flatpage "Edit This Flatpage" %}
+
+              {% chunk "facebook-link" %}
+          {% endblock content %}
+
+
+{% block home-callouts %}
+      <section class="l-home-callouts small lighter-bg ">
+        <div class="l-container">
+          <div class="main l-one-third">
+            {% chunk "home-membership" %}
+          </div>
+          <div class="main l-one-third">
+            {% chunk "home-programs" %}
+          </div>
+          <div class="l-one-third l-last">
+              {% chunk "home-scholarships" %}
+          </div>
+        </div>
+      </section>
+      {% endblock home-callouts %}

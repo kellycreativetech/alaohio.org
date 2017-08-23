@@ -1,0 +1,3 @@
+{% load frontendadmin_tags inlines %}
+{{ chunk.content|render_inlines|safe }}
+{% frontendadmin_change chunk %}

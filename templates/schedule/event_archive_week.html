@@ -1,0 +1,17 @@
+{% extends "site_base.html" %}
+
+{% block content %}
+<h2>Week of {{ week }}</h2>
+<a href="{% url calendar_agenda calendar_slug prev_year prev_week %}">Previous</a> <a href="{% url calendar_agenda calendar_slug next_year next_week%}">Next</a>
+{% for event in object_list %}
+    <div class="agenda_container">
+        <div class="agenda_time">{{ event.start }} - {{ event.end }}</div>
+        <div class="agenda_title">
+            <a href="{% url occurrence_by_date event.pk event.start.year event.start.month event.start.day event.start.hour event.start.minute event.start.second %}">
+                {{ event.title }}
+            </a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

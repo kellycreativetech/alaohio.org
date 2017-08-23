@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="postContainer">
+<h2>{{occurrence.title}}</h2>
+<h5>Starts: {% blocktrans with occurrence.start|date:_("DATETIME_FORMAT") as start_date %}{{ start_date }}{% endblocktrans %}</h5>
+<h5>Ends: {% blocktrans with occurrence.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</h5>
+
+    {% if occurrence.event.rule %}
+        {% if not occurrence.id %}
+            <h5>Reoccurs: {{occurrence.event.rule}}</h5>
+           
+            {% if occurrence.event.end_recurring_period %}
+                <h5>Until: {% blocktrans with occurrence.event.end_recurring_period|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</h5>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% if occurrence.description %}
+<h3>Description</h3>
+<p>{{occurrence.description}}</p>
+{% endif %}
+</div>
+

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load inlines thumbnail frontendadmin_tags chunks scheduletags schedule_ext_tags staticfiles %}
+
+{% block bodyclass %}blog{% endblock %}
+{% block site_title %}News {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block primary %}{% endblock primary %}
+{% endblock content %}

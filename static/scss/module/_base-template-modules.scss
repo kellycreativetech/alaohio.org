@@ -1,0 +1,151 @@
+.masthead{
+	padding-top:1px;
+	overflow:hidden;
+	background: $dark-grey;
+	padding-bottom: 10px;
+	@include breakpoint($above-stacked){
+		border-top:14px solid $blue;
+		padding-bottom: 0;
+	}
+}
+	.masthead__logo{
+		float:left;
+		margin: 0 10px 0 -4px;
+		width: 60px;
+		@include breakpoint($above-stacked){
+			width: 110px;
+			margin: -4px 20px 0 -4px;
+		}
+		@include breakpoint($above-skinny){
+			width: 140px;
+		}
+		@include breakpoint($above-normal){
+			width: 193px;
+			margin-top: -20px;
+		}
+		@include breakpoint( 1100px ){
+			margin-top:-4px;
+		}
+	}
+	.masthead__ladies{
+		display:none;
+		@include breakpoint($above-stacked, $no-query: '.old-ie'){
+			display:block;
+			float:right;
+			margin-top:-1px;
+			width: 400px;
+			margin-right:-110px;
+		}
+		@include breakpoint( 860px ){
+			width: 467px;
+		}
+		@include breakpoint(930px){
+			margin-right:-40px;
+		}
+		@include breakpoint($above-normal, $no-query: '.old-ie'){
+			margin-right:-140px;
+			width: 527px;
+		}
+		@include breakpoint(1100px){
+			margin-right:-80px;
+		}
+		@include breakpoint(1240px){
+			margin-right:0;
+		}
+	}
+	.masthead__h1{
+		@include font-size(3.2);
+		line-height: 1;
+		margin:0;
+		padding-top: .25em;
+		@include breakpoint( $above-stacked ){
+			@include font-size(3.8);
+			padding-top: .75em;
+		}
+		@include breakpoint( $above-skinny ){
+			@include font-size(4.2);
+			padding-top: .5em;
+		}
+		@include breakpoint( 860px ){
+			@include font-size(4.6);
+			padding-top: .75em;
+		}
+		@include breakpoint( $above-normal ){
+			@include font-size(5.2);
+		}
+		@include breakpoint( 1100px ){
+			@include font-size(6.0);
+			padding-top: .25em;
+		}
+		@include breakpoint( 1150px ){
+			@include font-size(6.8);
+			max-width: 700px;
+
+		}
+	}
+	.masthead__h2{
+		@include font-size(1.6);
+		line-height: 1;
+		margin: .25em 0 0 0;
+		@include breakpoint( $above-stacked ){
+			@include font-size(2.0);
+		}
+		@include breakpoint( 860px ){
+			@include font-size(2.4);
+		}
+		@include breakpoint( 1100px ){
+			@include font-size(3.2);
+			margin: .5em 0 0 0;
+		}
+	}
+
+
+.lighter-bg{
+	background: tint($body-bg, 50%);
+}
+.white-bg{
+	background: #fff;
+}
+.star-border{
+	margin:10px 0;
+}
+
+.footer__h2{
+	color: tint($text-color, 50%);
+	@include font-size(2.4);
+	@include breakpoint( $above-stacked ){
+		@include font-size(3.6);
+	}
+}
+.volunteer,
+.donate{
+	@include font-size(2.4);
+	font-style: italic;
+	display:inline-block;
+	vertical-align: baseline;
+	padding: 0 10px;
+	@include breakpoint( $above-stacked ){
+		@include font-size(5.2);
+	}
+	&:before{
+		@include breakpoint( $above-stacked ){
+			content: "";
+			width: 46px;
+			height: 44px;
+			display:inline-block;
+			vertical-align: baseline;
+			background: url(../img/red-star.png) top left no-repeat;
+		}
+	}
+}
+.donate{
+	color: $blue;
+	&:before{
+		@include breakpoint( $above-stacked ){
+			background: url(../img/blue-star.png) top left no-repeat;
+		}
+	}
+	&:hover{
+		color: shade($blue, 20%);
+	}
+}

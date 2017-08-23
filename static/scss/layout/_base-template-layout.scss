@@ -1,0 +1,14 @@
+
+.l-main{
+    padding: 20px 0;
+    @include breakpoint($above-stacked){
+        padding: 40px 0;
+    }
+}
+.l-footer,
+.l-home-callouts{
+    padding:10px 0;
+    @include breakpoint($above-normal){
+        padding: 30px 0;
+    }
+}

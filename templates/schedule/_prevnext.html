@@ -1,0 +1,10 @@
+{% load scheduletags %}
+<h4 class="prevnext">
+    <a href="{% prev_url target slug period %}" class="cal-arrow">
+      &laquo;
+    </a>
+     {{period_name}}
+    <a href="{% next_url target slug period %}" class="cal-arrow">
+      &raquo;
+    </a>
+</h4>

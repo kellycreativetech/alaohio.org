@@ -1,0 +1,35 @@
+{% extends "schedule/base.html" %}
+{% load i18n %}
+{% load scheduletags frontendadmin_tags forms_builder_tags chunks %}
+
+{% block body %}
+
+
+
+<h2 id="event-title">{{event.title}}</h2>
+
+<div class="container event-page">
+  <div class="event-page__cal-wrap">
+    <div class="date"><span class="month">{{ event.start|date:"D" }}, {{ event.start|date:"M" }}</span><span class="day">{{ event.start|date:"j" }}</span></div>
+  </div>
+  <div class="event-page__title-wrap">
+    <div class="event_details">
+
+      <h5>Start: <span id="start-time">{% blocktrans with event.start|date:_("DATETIME_FORMAT") as start_date %}{{ start_date }}{% endblocktrans %}</span></h5>
+      <h5>End: {% blocktrans with event.end|date:_("DATETIME_FORMAT") as end_date %}{{ end_date }}{% endblocktrans %}</h5>
+
+      {% if event.event.rule %}
+      <h5>Reoccurs: {{event.rule}}</h5>
+      {% endif %}
+
+      {{event.description|safe}}
+
+      {% frontendadmin_change event %}
+
+
+    <p><br><br><a style="text-decoration:none;" href="/calendar/calendar/month/"> &laquo; Back to Calendar</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

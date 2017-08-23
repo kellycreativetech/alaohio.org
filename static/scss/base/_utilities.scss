@@ -1,0 +1,40 @@
+html, body {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+img{max-width: 100%;}
+
+.float-right{
+	float:right;
+	margin: 0 0 20px 20px;
+}
+.float-left{
+	float:left;
+	margin: 0 20px 20px 0;
+}
+.text-center{
+  text-align:center;
+}
+
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+.clearfix{
+	@include clearfix();
+}
+
+//use rems with fallback, then the font-size mixin for fallbacks
+html {
+  font-size: 62.5%; /* Sets up the Base 10 stuff */
+}
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}

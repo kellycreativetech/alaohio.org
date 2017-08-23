@@ -1,0 +1,3 @@
+{% load thumbnail %}
+{% thumbnail object.image 560x3000 as thumb %}
+<img class="pull-right" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>

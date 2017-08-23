@@ -1,0 +1,3 @@
+{% load thumbnail %}
+{% thumbnail object.document 160x130 as thumb %}
+<p class="document"><a title="{{ object.title }}" href="{{ object.document.url }}"><img src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/><br/>{{ object.title }}</a></p>

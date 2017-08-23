@@ -1,0 +1,27 @@
+{% extends "biblion/blog_base.html" %}
+{% load inlines frontendadmin_tags thumbnail %}
+
+{% block head_title %}{{ post.title }} &mdash; {% endblock %}
+
+{% block above-blog %}
+{% endblock above-blog %}
+
+{% block primary %}
+    <h1>{{ post.title }}</h1>
+    {% block post-images %}
+	{% if post.images.count > 0 %}
+	<div class="blog-post-images" style="float:right;margin:0 0 20px 20px;">
+	{% for im in post.images.all %}
+			{% thumbnail im.image_path 346x249 as thumb %}
+            <img src="{{ thumb }}" />
+    {% endfor %}
+    </div>
+	{% endif %}
+	{% endblock %}
+
+
+	{{ post.content_html|safe }}
+	{% frontendadmin_change post "Edit this post" %}
+{% endblock %}
+
+

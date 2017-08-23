@@ -1,0 +1,52 @@
+// This is how you override the global grid
+// @include span(4 of 24 1/8);
+
+// breakpoint variables
+$above-stacked: 690px;
+$above-skinny: 767px;
+$above-normal: 995px;
+$above-wide: 1400px;
+
+// This is how no-media-queries works in breakpoint.
+// When you want the selector to apply to old-ie, use this.
+// @include breakpoint($above-stacked, $no-query: '.old-ie'){}
+
+
+//colors
+$blue: #023965;
+$grey: #e5e3e2;
+$light-grey: tint($grey, 50%);
+$dark-grey: #bab5b1;
+$red: #9f0303;
+$brown: #52463b;
+
+//color keywords
+$primary-color: $blue;
+$text-color: $brown;
+$link-color: $red;
+
+//global styles
+$body-bg: $grey;
+$selection-color: #fff;
+$selection-bg: $primary-color;
+
+$well-bg: $light-grey;
+$well-border: shade( $well-bg, 20%);
+$well-padding: 10px;
+
+//type and important global styles
+$base-font-size: 1.6;
+$base-line-height: 1.4;
+$base-font-family: "freight-text-pro", serif;
+$paragraph-font-weight: 300; //400 and 700 are also installed
+$paragraph-font-size: 2.0; //this uses the rem-calc mixin
+$small-paragraph-font-size: 1.6;
+
+$alt-font-family: "freight-sans-pro", sans-serif; // 400 is is the only weight available
+$header-font-family: "freight-display-pro", serif;
+$header-font-weight: 400;
+$header-line-height: $base-line-height;
+$header-color: $primary-color;
+$header-link-color: $link-color;
+$header-link-color-hover: shade($header-link-color, 30%);
+$header-link-color-active: shade($header-link-color-hover, 30%);

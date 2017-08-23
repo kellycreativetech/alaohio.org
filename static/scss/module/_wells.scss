@@ -1,0 +1,8 @@
+.well{
+  background: $well-bg;
+  border: $well-border;
+  padding: $well-padding;
+  h1, h2, h3, h4, h5, h6, p, ul, ol{
+  	margin-top:0;
+  }
+}

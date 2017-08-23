@@ -1,0 +1,16 @@
+{% load thumbnail %}
+
+                <div class="carousel-wrap">
+                        <ul data-orbit data-options="timer_speed:6000;navigation_arrows: false;slide_number: false;timer_show_progress_bar:false;" >
+                        {% for item in object.items.all %}
+                        {% thumbnail item.image 867x346 as thumb %}
+                          <li>
+                            <div class="caption">
+                                <h1>{{ item.title }}</h1>
+                                {{ item.description|safe }}
+                            </div>
+                            <img src="{{ thumb }}" alt="{{ item.title }}" />
+                          </li>
+                        {% endfor %}
+                        </ul>
+                    </div><!--/carousel-wrap-->

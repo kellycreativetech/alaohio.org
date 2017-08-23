@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load frontendadmin_tags chunks forms_builder_tags staticfiles %}
+
+{% block site_title %}Contact | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+	{% if form.get_absolute_url == "/forms/contact/" %}
+        {% chunk "contact-intro" %}
+    {% else %}
+
+    {{ form.intro|safe }}
+
+    {% endif %}
+
+	{% render_built_form form %}
+
+{% endblock content %}

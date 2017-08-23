@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load forms_builder_tags %}
+{% block head_title %}Sent: {{ form.title }}{% endblock %}
+
+{% block content %}
+          {{ form.response|safe }}
+
+{% endblock content %}

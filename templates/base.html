@@ -1,0 +1,144 @@
+{% load i18n inlines thumbnail treenav_tags frontendadmin_tags chunks staticfiles biblion_tags scheduletags schedule_ext_tags %}<!doctype html>
+<!--[if lte IE 8 ]><html class="old-ie" dir="ltr" lang="{{ LANGUAGE_CODE }}"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" dir="ltr" lang="{{ LANGUAGE_CODE }}"><![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html dir="ltr" lang="{{ LANGUAGE_CODE }}"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <title>{% block site_title %}American Legion Auxiliary of Ohio{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block styles %}{% include "_styles.html" %}{% endblock %}
+    {% include "_icons.html" %}
+    <script src="//use.typekit.net/jgy4sxn.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="{% static 'js/min/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
+
+    <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+    <script src="//html5base.googlecode.com/svn-history/r38/trunk/js/selectivizr-1.0.3b.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script><![endif]-->
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+  <div class="off-canvas-wrap">
+    <div class="open-panel-wrap">
+      <a class="open-panel" href="#">Menu</a>
+    </div>
+    <nav class="mobile-nav">
+      <div class="top"><a href="#" class="close-panel">&times;</a></div>
+    </nav>
+    <div class="off-canvas-content-wrap">
+      <header class="l-header masthead">
+        <div class="l-container">
+            <img class="masthead__ladies" src="{% static 'img/ladies.png' %}">
+            <h1 class="masthead__h1"><a href="/" class="masthead__logo"><img src="{% static 'img/logo.png' %}"></a>American Legion Auxiliary of Ohio</h1>
+            <h2 class="masthead__h2"><em>Serving Veterans, their Families and their Communities&nbsp;across&nbsp;Ohio</em></h2>
+
+        </div>
+      </header>
+
+      <nav class="sf-wrap">
+        <div class="l-container sf-menu">
+          {% show_treenav "main-nav" full_tree="True" %}
+        </div>
+      </nav>
+      {% block main-content %}
+      <section class="l-main l-container">
+        <div class="main l-two-thirds">
+          {% block content %}{% endblock content %}
+        </div>
+        <aside class="l-one-third l-last blog-sidebar">
+          {% block sidebar %}
+            <h4 class="subdued">Member Resources</h4>
+            {% posts_by_section "all" 2 as posts %}
+            {% if posts %}
+            {% for post in posts %}
+                 <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+            {% endfor %}
+            {% else %}
+                    <p>No blog posts have been published in this section.</p>
+            {% endif %}
+            <p><a href="/news/">See older posts</a></p>
+
+            <h4 class="subdued">Upcoming Events</h4>
+
+            {% upcoming_events as "events" 4 %}
+                <div class="sm-event-list">
+                {% for event in events %}
+                    <div class="clearfix">
+                        <div class="sidebar-date">
+                            <div class="date">
+                                <span class="month">{# {{ event.start|date:"D" }}, #}{{ event.start|date:"M" }}</span>
+                                <span class="day">{{ event.start|date:"j" }}</span>
+                            </div>
+                        </div>
+                        <div class="sidebar-date-title">
+                            <h5 class="agenda_title">
+                                <a href="{% url event event.event_id %}">{{ event.title }}</a>
+                            </h5>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
+
+
+            <p><a href="/calendar/calendar/month/">See full Event Calendar</a></p>
+            <img class="star-border" src="{% static 'img/star-border.png' %}">
+
+
+
+          {% endblock sidebar %}
+        </aside>
+      </section>
+
+      {% block home-callouts %}
+      {% endblock home-callouts %}
+
+      {% endblock main-content %}
+
+
+      <footer class="l-footer white-bg">
+        <div class="l-container">
+          {% chunk "foot-callout" %}
+          <p class="float-right">
+              {% if user.is_authenticated %}
+              {% if user.is_staff %}
+              <a href="/admin/">Site Admin</a>
+              {% endif %}
+              | <a href="/accounts/logout/">Log&nbsp;out</a>
+              {% else %}
+              <a href="/accounts/login/">Log&nbsp;in</a>
+              {% endif %}
+            </p>
+          <p>&copy;{% now "Y" %}</p>
+        </div>
+      </footer>
+    </div><!--/.off-canvas-content-wrap -->
+  </div><!-- /.off-canvas-wrap - wrapper for everything -->
+    {% block scripts %}
+    {% include "_scripts.html" %}
+    {% endblock %}
+    <!--
+                           KK  Lll.  LLLL
+    .KKKKKKKK.            KK .L.  ..L.. .
+              ..K       KK  L..   LL
+                K.   KK.   L.   .LL.
+              KK. KK      ..    LL.   l
+            KK.KK.        L.   LL    l
+         KK..K..         .LL l.LL  l
+       KK.  .K.   eee.   LL.   LL.
+     KK.     .K. ee.. .L...    L.
+               K eeee..   LLL..L  Lllyyyy.
+                                        .Y.
+    Developed by                         .Y
+    KellyCreativeTech.com                 y
+                                         Y.
+                                        .y
+                                       .y
+                                      .Y
+                                     y              -->
+
+  </body>
+</html>

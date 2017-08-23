@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load frontendadmin_tags %}
+{% block content %}
+<div class="postContainer clearfix">
+<h2>{{ month|date:"F Y" }}</h2>
+{% if calendar_slug != None %}
+<h5><a href="{% url calendar_agenda calendar_slug prev_year prev_month %}">&laquo; Previous Month</a> &nbsp; <a href="{% url calendar_agenda calendar_slug next_year next_month %}">Next Month &raquo;</a></h5>
+{% else %}
+<h5><a href="{% url calendar_agenda_date prev_year prev_month %}">&laquo; Previous Month</a> &nbsp; <a href="{% url calendar_agenda_date next_year next_month %}">Next Month &raquo;</a></h5>
+{% endif %}
+<hr />
+{% frontendadmin_add object_list "Add event" %}
+{% for event in object_list %}
+    <div class="agenda_container">
+    <div class="date"><span class="month">{{ event.start|date:"M" }}</span><span class="day">{{ event.start|date:"j" }}</span></div>
+        <div class="event_details">
+        <h1 class="agenda_title">
+            <a href="{% url occurrence_by_date event.pk event.start.year event.start.month event.start.day event.start.hour event.start.minute event.start.second %}">
+                {{ event.title }}
+            </a>
+        </h1>
+        <p class="agenda_time">{{ event.start }} - {{ event.end }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+.social{
+  background: url(../img/social.png) top left no-repeat transparent;
+  background: url(../img/social.svg) top left no-repeat transparent, none;
+  background-size: 36px 100px;
+  padding:10px 4px 14px 60px;
+  display:block;
+  border-radius: 4px;
+  color:#fff;
+  margin-top: 10px;
+  max-width: 250px;
+  &:hover{
+    color:#fff;
+  }
+  &.twt{
+    background-position: 10px 10px;
+    background-color: #4099FF;
+    &:hover{
+      background-color: shade(#4099FF, 15%);
+    }
+  }
+  &.fb{
+    background-position: 7px -40px;
+    background-color: #3B5998;
+    &:hover{
+      background-color: shade(#3B5998, 15%);
+    }
+  }
+}

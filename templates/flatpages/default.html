@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load inlines thumbnail frontendadmin_tags chunks staticfiles %}
+
+{% block bodyclass %}{{ block.super }} bodyclass-{{ flatpage.url|slugify }}{% endblock %}
+
+{% block site_title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
+
+
+{% block content %}
+      {% if flatpage.main_content_image %}
+      {% thumbnail flatpage.main_content_image 500x500 as thumb %}
+      <img class="main-subpage-img" src="{{ thumb }}" />
+      {% endif %}
+
+      <h1>{{ flatpage.title }}</h1>
+      {{ flatpage.content|render_inlines|safe }}
+      {% frontendadmin_change flatpage "Edit This Flatpage" %}
+
+
+
+      {% if flatpage.id == 7 %}
+      {% endif %}
+
+{% endblock content %}
+
+{% block sidebar %}
+{{ block.super }}
+{% chunk "facebook-link" %}
+
+{% endblock sidebar %}

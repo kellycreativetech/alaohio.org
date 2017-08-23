@@ -1,0 +1,103 @@
+//use rems with fallback
+body{
+    font-family: $base-font-family;
+    font-weight: $paragraph-font-weight;
+    line-height: $base-line-height;
+    color: $text-color;
+    @include font-size( $base-font-size * 0.8 );
+    @include breakpoint($above-skinny){
+        @include font-size( $base-font-size );
+    }
+}
+
+//use this because we're using base-font-size set at 1.6 for
+// the REM fallback..
+p, li, div, table{
+    @include font-size( $paragraph-font-size );
+    .small & {
+        font-family: $alt-font-family;
+        @include font-size( $small-paragraph-font-size );
+    }
+    &.intro{
+        @include font-size( $paragraph-font-size * 1.25 );
+        @include breakpoint($above-stacked){
+            @include font-size( $paragraph-font-size * 1.4 );
+        }
+        @include breakpoint($above-wide){
+            @include font-size( $paragraph-font-size * 1.7 );
+        }
+    }
+}
+p{
+    margin: 0 0 1em 0;
+}
+
+b, strong{
+    font-weight: 600;
+}
+a{
+    color: $link-color;
+    text-decoration: none;
+    &:hover{
+        color: shade($link-color, 15%);
+        text-decoration: underline;
+    }
+    &:active{
+        color: shade($link-color, 25%);
+    }
+}
+small{
+    font-size: 0.8em;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+    line-height: $header-line-height;
+    color: $header-color;
+    margin: 1em 0 0.5em 0;
+    &:first-child{
+        margin-top:0;
+    }
+    small{
+        color: tint($header-color, 50%);
+    }
+    &.subdued{
+        color: tint($text-color, 50%);
+        border-bottom: 1px solid tint($text-color, 50%);
+    }
+    a{
+        color: $header-link-color;
+        &:hover{
+            color: $header-link-color-hover;
+            text-decoration: none;
+        }
+        &:active{
+            color: $header-link-color-active;
+        }
+    }
+    .blog-sidebar &{
+        margin: 0.25em 0 0.25em 0;
+        a{
+            color: $blue;
+            &:hover{
+                color: shade($blue, 20%);
+            }
+            &:active{
+                color: shade($blue, 35%);
+            }
+        }
+    }
+}
+h1{
+    @include font-size( $paragraph-font-size * 2);
+    &.calendarname{margin-top:0;}
+}
+h2{ @include font-size( $paragraph-font-size * 1.8); }
+h3{ @include font-size( $paragraph-font-size * 1.6); }
+h4{ @include font-size( $paragraph-font-size * 1.4); }
+h5{ @include font-size( $paragraph-font-size * 1.2); }
+h6{ @include font-size( $paragraph-font-size * 1); }
+
+
+
+
