@@ -3,7 +3,7 @@ $sf-link: $light-grey;
 
 
 $sf-top-level-bg: transparent;
-$sf-top-level-bg-hover-color: shade($red, 10%);
+$sf-top-level-bg-hover-color: mix($shade, $red, 10%);
 $sf-top-level-link-font-size: 2.8;
 $sf-top-level-link-padding: 6px 0;
 $sf-top-level-link-margin-top-bottom: 0;
@@ -11,7 +11,7 @@ $sf-top-level-link-margin-left-right:10px;
 $sf-top-level-link-radius: 0;
 $sf-top-level-link-color: $sf-link;
 $sf-top-level-link-color-hover: $sf-link;
-$sf-top-level-link-color-current: tint($red, 60%);
+$sf-top-level-link-color-current: mix($tint, $red, 60%);
 $sf-top-level-current-bg: $sf-top-level-bg-hover-color;
 $sf-top-level-align: left;
 

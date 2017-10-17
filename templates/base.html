@@ -1,4 +1,4 @@
-{% load i18n inlines thumbnail treenav_tags frontendadmin_tags chunks staticfiles biblion_tags scheduletags schedule_ext_tags %}<!doctype html>
+<!doctype html>
 <!--[if lte IE 8 ]><html class="old-ie" dir="ltr" lang="{{ LANGUAGE_CODE }}"><![endif]-->
 <!--[if IE 9 ]><html class="ie9" dir="ltr" lang="{{ LANGUAGE_CODE }}"><![endif]-->
 <!--[if (gte IE 10)|!(IE)]><!--><html dir="ltr" lang="{{ LANGUAGE_CODE }}"><!--<![endif]-->
@@ -9,11 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    {% block meta %}
+    <title>{{ page.content.title }} | {{ site.name }}</title>
+    <meta name="author" content="{{ site.name }}">
+    <meta name="msapplication-TileColor" content="#3b854e"/>
+    <meta name="description" content="{{ page.content.content|striptags|truncatechars:200 }}">
+    <link href="/static/icons/favicon.ico" rel=icon type="image/x-icon">
+    <link href="/static/icons/favicon.png" rel=icon type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="/static/icons/apple-touch-icon.png">
+
+    <!-- Facebook, LinkedIn, and Google Plus meta tags -->
+    <meta property="og:image" content="{% if page.content.main_content_image %}{% imgix_url page.content.main_content_image %}{% elif page.content.masthead %}
+    {% imgix_url page.content.masthead  %}{% else %}//{{site.domain}}/site_media/media/servee_images/10527790_324688421023227_1217940703687430932_n.jpg{% endif %}">
+    <meta property="og:title" content="{% if page.content.title %}{{ page.content.title }}:{% endif %} {{ site.name }}"/>
+    <meta property="og:description" content="{{ page.content.content|striptags|truncatewords:60 }}"/>
+    <meta property="og:url" content="//{{ site.domain }}/{{ post.path }}"/>
+    <meta property="og:site_name" content="{{ site.name }}"/>
+    <meta property="og:type" content="website"/>
+
+    <!-- Twitter meta tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="//{{ site.domain }}/{{ page.path }}">
+    <meta name="twitter:title" content="{% if page.content.title %}{{ page.content.title }}:{% endif %} {{ site.name }}">
+    <meta name="twitter:description" content="{{ page.content.content|striptags|truncatechars:200 }}">
+
+    <meta name="twitter:image:src" content="{% if page.content.main_content_image %}{% imgix_url page.content.main_content_image  %}{% elif page.content.masthead %}
+    {% imgix_url page.content.masthead  %}{% else %}//{{ site.domain }}/site_media/media/servee_images/10527790_324688421023227_1217940703687430932_n.jpg{% endif %}">
+
+    <meta name="twitter:site" content="//{{ site.domain }}">
+    <meta name="twitter:creator" content="">
+
+    {% endblock meta %}
     {% block styles %}{% include "_styles.html" %}{% endblock %}
     {% include "_icons.html" %}
     <script src="//use.typekit.net/jgy4sxn.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
-    <script src="{% static 'js/min/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
+    <script src="/static/js/min/jquery-1.11.1.min.js" type="text/javascript"></script>
 
     <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
@@ -31,8 +62,8 @@
     <div class="off-canvas-content-wrap">
       <header class="l-header masthead">
         <div class="l-container">
-            <img class="masthead__ladies" src="{% static 'img/ladies.png' %}">
-            <h1 class="masthead__h1"><a href="/" class="masthead__logo"><img src="{% static 'img/logo.png' %}"></a>American Legion Auxiliary of Ohio</h1>
+            <img class="masthead__ladies" src="/static/img/ladies.png">
+            <h1 class="masthead__h1"><a href="/" class="masthead__logo"><img src="/static/img/logo.png"></a>American Legion Auxiliary of Ohio</h1>
             <h2 class="masthead__h2"><em>Serving Veterans, their Families and their Communities&nbsp;across&nbsp;Ohio</em></h2>
 
         </div>
@@ -40,7 +71,24 @@
 
       <nav class="sf-wrap">
         <div class="l-container sf-menu">
-          {% show_treenav "main-nav" full_tree="True" %}
+
+          {% menu "Navigation" %}
+          <ul id="navigation" class="nav">
+            {% for item in tree %}
+              <li id="menu-item-{{ item.name|slugify }}" class="{{ item.trail_class }} {{ item.name|slugify }} {{ item.current_class}}">
+                <a class="{{ item.current_class }}" href="{{ item.url }}">{{ item.name }}</a>
+                  {% if item.children %}
+                  <ul>
+                      {% for citem in item.children %}
+                      <li class="{{ item.trail_class }} {{ item.current_class}} "><a class="{{ item.current_class }}" href="{{ citem.url }}">{{ citem.name }}</a></li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+
+
         </div>
       </nav>
       {% block main-content %}
@@ -51,10 +99,11 @@
         <aside class="l-one-third l-last blog-sidebar">
           {% block sidebar %}
             <h4 class="subdued">Member Resources</h4>
-            {% posts_by_section "all" 2 as posts %}
-            {% if posts %}
-            {% for post in posts %}
-                 <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+            {% children as "posts" parent="news" limit=2 %}
+
+             {% if posts %}
+          {% for post in posts %}
+                 <h5><a href="{{ post.get_absolute_url }}">{{ post.content.title }}</a></h5>
             {% endfor %}
             {% else %}
                     <p>No blog posts have been published in this section.</p>
@@ -63,7 +112,10 @@
 
             <h4 class="subdued">Upcoming Events</h4>
 
-            {% upcoming_events as "events" 4 %}
+            {% children as "events" parent="events" limit=4 order_by="start" upcoming="true" %}
+
+             {% if events %}
+
                 <div class="sm-event-list">
                 {% for event in events %}
                     <div class="clearfix">
@@ -75,17 +127,15 @@
                         </div>
                         <div class="sidebar-date-title">
                             <h5 class="agenda_title">
-                                <a href="{% url event event.event_id %}">{{ event.title }}</a>
+                                <a href="{{ event.get_absolute_url }}">{{ event.content.title }}</a>
                             </h5>
                         </div>
                     </div>
                 {% endfor %}
                 </div>
-
-
-
-            <p><a href="/calendar/calendar/month/">See full Event Calendar</a></p>
-            <img class="star-border" src="{% static 'img/star-border.png' %}">
+                {% endif %}
+            <p><a href="/events">See full Event Calendar</a></p>
+            <img class="star-border" src="/static/img/star-border.png">
 
 
 
@@ -98,19 +148,18 @@
 
       {% endblock main-content %}
 
-
       <footer class="l-footer white-bg">
         <div class="l-container">
           {% chunk "foot-callout" %}
           <p class="float-right">
-              {% if user.is_authenticated %}
-              {% if user.is_staff %}
-              <a href="/admin/">Site Admin</a>
-              {% endif %}
-              | <a href="/accounts/logout/">Log&nbsp;out</a>
-              {% else %}
-              <a href="/accounts/login/">Log&nbsp;in</a>
-              {% endif %}
+            {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <a href="/admin/">Site Admin</a>
+            {% endif %}
+
+            {% else %}
+            <a href="/admin/">Log&nbsp;in</a>
+            {% endif %}
             </p>
           <p>&copy;{% now "Y" %}</p>
         </div>

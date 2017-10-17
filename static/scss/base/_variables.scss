@@ -13,9 +13,11 @@ $above-wide: 1400px;
 
 
 //colors
+$shade: #000;
+$tint: #fff;
 $blue: #023965;
 $grey: #e5e3e2;
-$light-grey: tint($grey, 50%);
+$light-grey: mix($tint, $grey, 50%);
 $dark-grey: #bab5b1;
 $red: #9f0303;
 $brown: #52463b;
@@ -25,13 +27,14 @@ $primary-color: $blue;
 $text-color: $brown;
 $link-color: $red;
 
+
 //global styles
 $body-bg: $grey;
 $selection-color: #fff;
 $selection-bg: $primary-color;
 
 $well-bg: $light-grey;
-$well-border: shade( $well-bg, 20%);
+$well-border: mix($shade, $well-bg, 20%);
 $well-padding: 10px;
 
 //type and important global styles
@@ -48,5 +51,5 @@ $header-font-weight: 400;
 $header-line-height: $base-line-height;
 $header-color: $primary-color;
 $header-link-color: $link-color;
-$header-link-color-hover: shade($header-link-color, 30%);
-$header-link-color-active: shade($header-link-color-hover, 30%);
+$header-link-color-hover: mix($shade, $header-link-color, 30%);
+$header-link-color-active: mix($shade, $header-link-color-hover, 30%);

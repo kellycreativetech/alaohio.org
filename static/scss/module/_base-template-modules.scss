@@ -101,7 +101,7 @@
 
 
 .lighter-bg{
-	background: tint($body-bg, 50%);
+	background: mix($tint, $body-bg, 50%);
 }
 .white-bg{
 	background: #fff;
@@ -111,7 +111,7 @@
 }
 
 .footer__h2{
-	color: tint($text-color, 50%);
+	color: mix($tint, $text-color, 50%);
 	@include font-size(2.4);
 	@include breakpoint( $above-stacked ){
 		@include font-size(3.6);
@@ -146,6 +146,6 @@
 		}
 	}
 	&:hover{
-		color: shade($blue, 20%);
+		color: mix($shade, $blue, 20%);
 	}
 }

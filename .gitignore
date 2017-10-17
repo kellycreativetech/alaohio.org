@@ -1,3 +1,5 @@
 
 .glass/config
 site_media/
+bower_components/
+resources/

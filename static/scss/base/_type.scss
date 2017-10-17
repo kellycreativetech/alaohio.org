@@ -39,11 +39,11 @@ a{
     color: $link-color;
     text-decoration: none;
     &:hover{
-        color: shade($link-color, 15%);
+        color: mix($shade, $link-color, 15%);
         text-decoration: underline;
     }
     &:active{
-        color: shade($link-color, 25%);
+        color: mix($shade, $link-color, 25%);
     }
 }
 small{
@@ -59,11 +59,11 @@ h1, h2, h3, h4, h5, h6{
         margin-top:0;
     }
     small{
-        color: tint($header-color, 50%);
+        color: mix($tint, $header-color, 50%);
     }
     &.subdued{
-        color: tint($text-color, 50%);
-        border-bottom: 1px solid tint($text-color, 50%);
+        color: mix($tint, $text-color, 50%);
+        border-bottom: 1px solid mix($tint, $text-color, 50%);
     }
     a{
         color: $header-link-color;
@@ -80,10 +80,10 @@ h1, h2, h3, h4, h5, h6{
         a{
             color: $blue;
             &:hover{
-                color: shade($blue, 20%);
+                color: mix($shade, $blue, 20%);
             }
             &:active{
-                color: shade($blue, 35%);
+                color: mix($shade, $blue, 35%);
             }
         }
     }

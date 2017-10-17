@@ -28,7 +28,7 @@ $mobile-nav-menu-button-border-radius: 4px;
   display:inline-block;
   &:hover,
   &:focus{
-      color:shade($mobile-nav-menu-button-text-color, 20%);
+      color:mix($shade, $mobile-nav-menu-button-text-color, 20%);
       text-decoration: none;
   }
   &:before{
@@ -60,7 +60,7 @@ $mobile-nav-menu-button-border-radius: 4px;
   color: $mobile-nav-close-link-color;
   &:hover,
   &:focus{
-    color: shade($mobile-nav-close-link-color, 20%);
+    color: mix($shade, $mobile-nav-close-link-color, 20%);
     text-decoration: none;
   }
 }
@@ -90,14 +90,7 @@ nav.mobile-nav {
     .open-panel{display:none;}
     .off-canvas-wrap {
         left: 0;
-        -webkit-transform: translate3d(70%, 0, 0);
-        -moz-transform: translate3d(70%, 0, 0);
-        -ms-transform: translate3d(70%, 0, 0);
-        -o-transform: translate3d(70%, 0, 0);
-        transform: translate3d(70%, 0, 0);
-        -webkit-transition: -webkit-transform 500ms ease;
-        -moz-transition: -moz-transform 500ms ease;
-        -o-transition: -o-transform 500ms ease;
+        transform: translateX(70%);
         transition: transform 500ms ease;
     }
     .off-canvas-content-wrap{
@@ -108,21 +101,8 @@ nav.mobile-nav {
 /* When the panel is closed, transition the page back to the left */
 .off-canvas-wrap {
   left: 0;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-transition: -webkit-transform 500ms ease;
-  -moz-transition: -moz-transform 500ms ease;
-  -o-transition: -o-transform 500ms ease;
   transition: transform 500ms ease;
 }
-
-
-
-
-
 
 // off-canvas styling
 //show and hide the menus
@@ -181,7 +161,7 @@ nav.mobile-nav {
             }
 
             a.open-subs{
-                color: tint($mobile-nav-text-color, 70%);
+                color: mix($tint, $mobile-nav-text-color, 70%);
             }
         }
         &.prepended > a{

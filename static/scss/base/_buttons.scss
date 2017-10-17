@@ -2,7 +2,7 @@ $button-bg-color: $primary-color;
 $button-color: #fff;
 $button-border: 1px solid $button-bg-color;
 $button-border-radius:  0;
-$button-hover-background: shade($button-bg-color, 15%);
+$button-hover-background: mix($shade, $button-bg-color, 15%);
 $button-padding: 10px 30px;
 $button-margin: 15px 10px 0 0;
 $button-font-weight:400;
@@ -10,14 +10,14 @@ $button-font-weight:400;
 $button-subdued-bg-color: #fff;
 $button-subdued-color: $button-bg-color;
 $button-subdued-border: 1px solid $button-bg-color;
-$button-subdued-hover-background: shade($button-subdued-bg-color, 5%);
+$button-subdued-hover-background: mix($shade, $button-subdued-bg-color, 5%);
 
 input[type="submit"],
 button{
   background-color: $button-bg-color;
   color: $button-color;
   border: $button-border;
-  @include border-radius( $button-border-radius );
+  border-radius: $button-border-radius;
   padding: $button-padding;
   margin: $button-margin;
   font-weight: $button-font-weight;

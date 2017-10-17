@@ -9,7 +9,7 @@ body{
 blockquote {
   quotes: "\201C""\201D""\2018""\2019";
   &:before {
-	  color: tint($text-color, 50%);
+	  color: mix($tint, $text-color, 50%);
 	  content: "\201C";
 	  font-size: 4em;
 	  line-height: 0.1em;
@@ -21,7 +21,7 @@ blockquote {
 	}
 	cite{
 		display:block;
-		color: tint($text-color, 40%);
+		color: mix($tint, $text-color, 40%);
 		font-size: 0.8em;
 		font-style:italic;
 		&:before{

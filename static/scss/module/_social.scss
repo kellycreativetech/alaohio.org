@@ -15,14 +15,14 @@
     background-position: 10px 10px;
     background-color: #4099FF;
     &:hover{
-      background-color: shade(#4099FF, 15%);
+      background-color: mix($shade, #4099FF, 15%);
     }
   }
   &.fb{
     background-position: 7px -40px;
     background-color: #3B5998;
     &:hover{
-      background-color: shade(#3B5998, 15%);
+      background-color: mix($shade, #3B5998, 15%);
     }
   }
 }

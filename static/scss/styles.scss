@@ -1,6 +1,5 @@
-@import "compass",  // http://compass-style.org/
-        "breakpoint", // http://breakpoint-sass.com/
-        "susy"; // http://susy.oddbird.net/
+@import "../../bower_components/breakpoint-sass/stylesheets/breakpoint", // http://breakpoint-sass.com/
+        "../../bower_components/susy/sass/susy"; // http://susy.oddbird.net/
 
 @import "base/normalize",
         "base/variables",
