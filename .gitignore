@@ -1,5 +1,5 @@
-
-.glass/config
-site_media/
 bower_components/
+uploads/
+site_media/
 resources/
+.glass/config
