@@ -1,0 +1,22 @@
+{% extends "schedule/event_base.html" %}
+
+{% block content %}
+
+<div class="android-more-section">
+    <div class="android-card-container mdl-grid" id="posts">
+        <div id='calendar'>
+             {% children as "events" order_by="start" %}
+        {% for event in events %}
+          
+            'title': "{{ event.content.title }}",
+            'start': "{{ event.start|date:'c' }}",
+            'end': "{{ event.end|date:'c' }}",
+            'url': "{{ event.get_absolute_url }}",
+          
+        {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
+

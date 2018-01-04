@@ -1,0 +1,52 @@
+{% extends "schedule/event_base.html" %}
+ {% block styles %} {{ block.super }}
+  <link rel="stylesheet" href="/static/lib/fullcalendar.min.css" type="text/css" /> 
+  <style>
+.fc-day-grid-event > .fc-content {
+    white-space: normal;
+}
+</style>
+ {% endblock %}
+{% block content %}
+
+<div class="android-more-section">
+    <div class="android-card-container mdl-grid" id="posts">
+        <div id='calendar'></div>
+    </div>
+</div>
+
+{% endblock content %}
+
+ {% block scripts %}
+ {{ block.super }}
+ <script src="/static/lib/moment.min.js"></script>
+<script src="/static/lib/fullcalendar.min.js"></script> 
+<script>
+    $(document).ready(function() {
+
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month',
+        },
+        eventLimit: true, // allow "more" link when too many events
+        events: [
+        {% children as "events" order_by="start" %}
+        {% for event in events %}
+          {
+            'title': "{{ event.content.title|safe }}", 
+            'start': "{{ event.start|date:'c' }}",
+            'end': "{{ event.end|date:'c' }}",
+            'url': "{{ event.get_absolute_url }}{% if editing %}/admin{% endif %}",
+          },
+        {% endfor %}
+        ], 
+       
+      });
+
+    });
+    
+</script>
+
+{% endblock scripts %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block site_title %}Contact | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<h1>{% page "title" type="text" %}</h1>
+    {% page "content" type="wysiwyg" %}
+
+    <form actn="/siteapi/submit_form" method="POST"  action="/404/" class="glass-form">
+        <input name="to" type="hidden" value="5f7e6943-5329-4726-af3e-9f69492ee5c8" /> <!-- this is katie@alaohio.com -->
+        <input type="hidden" name="redirect" value="/success" />
+        <p class="nojs"><em>Note: Please enable Javascript to use this contact form. <a href="http://support.microsoft.com/gp/howtoscript">Learn how here.</a></em></p>
+        
+        
+            {% csrf_token %}    
+    <div id="div_id_name" class="control-group  ">
+
+        <label for="id_name" class="control-label required-field">
+              Name
+          </label>
+        <div class="controls">
+            <input name="name" maxlength="2000" required="" type="text" class="charfield required" id="id_name">
+        </div>
+    </div>
+    <div id="div_id_e_mail" class="control-group  ">
+        <label for="id_e_mail" class="control-label required-field">
+              E-mail
+          </label>
+        <div class="controls">
+            <input name="e_mail" maxlength="2000" required="" type="email" class="emailfield required" id="id_e_mail">
+        </div>
+    </div>
+    <div id="div_id_message" class="control-group  ">
+        <label for="id_message" class="control-label required-field">
+              Message
+          </label>
+        <div class="controls">
+            <textarea rows="10" name="message" id="id_message" required="" class="charfield required" cols="40"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <input type="submit" value="Submit" class="button">
+    </div>
+</form>
+
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super.block }}
+<script type="text/javascript">
+    $(function(){
+      $f = $(".initialForm");
+      $(".nojs").remove();
+      $f.attr({"action": $f.attr("actn")});
+    });
+    
+    $("document").ready(function(){
+      $("form").each(function(key, value){
+          if (typeof($(this).attr('actn')) !== 'undefined') {
+              $(this).attr({"action": $(this).attr("actn")});
+          }
+      })
+    });
+      </script>
+{% endblock scripts %}

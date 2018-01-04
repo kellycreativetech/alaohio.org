@@ -1,0 +1,55 @@
+{% extends "blog/base.html" %}
+
+{% block head_title %}Biblion Blog{% endblock %}
+
+{% block primary %}
+    <div>{% page "blog_intro" type="wysiwyg" %}</div>
+
+
+   {% children as posts order_by="-published" %}
+    {% if posts %}
+    {% autopaginate posts 10 %}
+        {% for post in posts %}
+        <div class="post-wrap">
+
+        {% if post.published %}
+
+            <h2><a href="{{ post.get_absolute_url }}" class="post-link">{{ post.content.title }}</a></h2>
+            
+                {% if post.content.main_content_image %}
+                <div class="blog-post-images">                
+                    <img src="{% imgix_url  post.content.main_content_image %}" />
+                </div>
+                {% endif %}
+            {{ post.content.content|striptags|safe|truncatewords:25 }}
+            {# <p class="more"><a href="{{ post.get_absolute_url }}{% if editing %}/admin{% endif %}" class="post-link">read more...</a></p> #}
+
+        {% else %}
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                <h2><small>Draft: </small><a href="{{ post.get_absolute_url }}/admin" class="post-link">{{ post.content.title }}</a></h2>
+                
+                {% if  post.content.main_content_image %}
+                <div class="blog-post-images">                
+                    <img src="{% imgix_url  post.content.main_content_image %}" />
+                </div>
+                {% endif %}
+                {{ post.content.content|safe|truncatewords:10 }}
+                {# <p class="more"><a href="{{ post.get_absolute_url }}" class="post-link">read more...</a></p> #}
+
+                {% endif %}
+            {% endif %}
+
+
+        {% endif %}
+
+
+
+        </div>
+        {% endfor %}
+        {% paginate %}
+    {% else %}
+        <p>No blog posts have been published.</p>
+    {% endif %}
+
+{% endblock %}

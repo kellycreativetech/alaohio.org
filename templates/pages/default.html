@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block bodyclass %}{{ block.super }} bodyclass-{{ flatpage.url|slugify }}{% endblock %}
+
+{% block site_title %}{{ page.title }} | {{ block.super }}{% endblock %}
+
+
+{% block content %}
+      {% if page.content.main_content_image or editing %}
+      {% page "main_content_image" type="img" %}
+      <img class="float-right-no-border" src="{% if page.content.main_content_image %}{% imgix_url page.content.main_content_image %}{% else %}https://placem.at/places{% endif %}?w=500" />
+      {% endif %} 
+
+      <h1>{% page "title" type="text" %}</h1>
+     {% page "content" type="wysiwyg" %}
+
+
+
+{% endblock content %}
+
+{% block sidebar %}
+{{ block.super }}
+{% chunk "facebook-link" type="wysiwyg" %}
+
+{% endblock sidebar %}

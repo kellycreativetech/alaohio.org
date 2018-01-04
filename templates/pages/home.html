@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block bodyclass %}home{% endblock %}
+{% block site_title %}{{ block.super }}{% endblock %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+
+        {% block content %}
+              {% page "content" type="wysiwyg" %}
+              
+
+              {% chunk "facebook-link" type="wysiwyg" %}
+          {% endblock content %}
+
+
+{% block home-callouts %}
+      <section class="l-home-callouts small lighter-bg ">
+        <div class="l-container">
+          <div class="main l-one-third">
+            {% page "home-membership" type="wysiwyg" %}
+          </div>
+          <div class="main l-one-third">
+            {% page "home-programs" type="wysiwyg" %}
+          </div>
+          <div class="l-one-third l-last">
+              {% page "home-scholarships" type="wysiwyg" %}
+          </div>
+        </div>
+      </section>
+      {% endblock home-callouts %}

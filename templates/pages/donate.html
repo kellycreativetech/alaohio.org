@@ -1,0 +1,115 @@
+{% extends "pages/default.html" %}
+
+
+      {% block content %}
+      {{ block.super }}
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_donations">
+<input type="hidden" name="business" value="97T74E5JVPJZE">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="item_name" value="American Legion Auxiliary of Ohio">
+<input type="hidden" name="button_subtype" value="services">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="cn" value="Add special instructions to the seller:">
+<input type="hidden" name="no_shipping" value="2">
+<input type="hidden" name="rm" value="1">
+<input type="hidden" name="return" value="http://alaohio.org/donate-success/">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+<table>
+<tr><td><input type="hidden" name="on0" value="Where would you like your donation to go?">Where would you like your donation to go?</td></tr><tr><td>
+
+
+<select name="os0">
+
+  <optgroup label="AMERICANISM">
+<option>Americanism/Government Test Trip (Department)</option>
+<option>Spirit of Youth (National)</option>
+</optgroup>
+
+<optgroup label="AUXILIARY EMERGENCY FUND">
+<option>AEF - $25 Donation receives a “Women Helping Women” pin (National)</option>
+</optgroup>
+
+<optgroup label="BUCKEYE GIRLS STATE">
+<option>Buckeye Girls State Donation (for general operations NOT the Endowment Fund Scholarships)</option>
+</optgroup>
+
+<optgroup label="CHAPLAIN">
+<option>Chapel of Four Chaplains</option>
+</optgroup>
+
+<optgroup label="CHILDREN AND YOUTH">
+<option>Children and Youth Fund (Department)</option>
+<option>The American Legion Child Welfare Foundation (National)</option>
+</optgroup>
+
+<optgroup label="COMMUNITY SERVICE">
+<option>Ohio Community Service Disaster Fund (Department)</option>
+</optgroup>
+
+<optgroup label="DEPARTMENT HEADQUARTERS">
+<option>Capital Improvement Fund (Department Hqs Building)</option>
+<option>National Candidates Fund (Department)</option>
+</optgroup>
+
+<optgroup label="DEPARTMENT PRESIDENT’S SPECIAL PROJECT (Poppy Funds may be used)">
+<option>Military Family Assistance Fund- Grant Fund that Assists Veterans In Financial Crisis</option>
+</optgroup>
+
+<optgroup label="EDUCATION">
+<option>Scholarships (Department)</option>
+</optgroup>
+
+<optgroup label="NATIONAL HEADQUARTERS">
+<option>ALA Foundation</option>
+<option>National President’s Special Project – AEF</option>
+</optgroup>
+
+<optgroup label="NATIONAL SECURITY">
+<option>U.S.O.</option>
+<option>Military Family Assistance Fund</option>
+</optgroup>
+
+<optgroup label="PAST PRESIDENTS PARLEY">
+<option>PPP Nurses Scholarship (Department)</option>
+<option>Support for Women Veterans (Dept.)</option>
+</optgroup>
+
+<optgroup label="VETERANS AFFAIRS AND REHABILITATION">
+<option>Chillicothe VA</option>
+<option>Cincinnati VA</option>
+<option>Cleveland VA</option>
+<option>Dayton VA</option>
+<option>Ohio Veterans Home</option>
+<option>VA Outpatient Clinics - Akron </option>
+<option>VA Outpatient Clinics - Columbus</option>
+<option>VA Outpatient Clinics - Parma</option>
+<option>VA Outpatient Clinics - Toledo</option>
+<option>VA Outpatient Clinics - Youngstown </option>
+<option>Fisher Houses – Ohio</option>
+<option>Veterans Creative Arts Festival (Nat’l.)</option>
+<option>Marie Moore Fund (Department-Donations for purchase of items for Veterans in VA Hospitals)</option>
+</optgroup>
+
+
+</select>
+
+
+</td></tr>
+<tr><td><input type="hidden" name="on1" value="Your district/Unit Number"><br>Your district/Unit Number</td></tr><tr><td><input type="text" name="os1" maxlength="200"></td></tr>
+</table>
+<input type="image" src="/site_media/media/servee_images/donate.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
+
+
+
+
+
+      {% endblock content %}

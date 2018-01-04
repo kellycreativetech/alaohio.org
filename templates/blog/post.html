@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% block head_title %}{{ page.title }} &mdash; {% endblock %}
+
+{% block above-blog %}
+{% endblock above-blog %}
+
+{% block primary %}
+	<h1>{% page "title" type="text" %}</h1>
+	{% if page.content.main_content_image or editing %}
+	{% block post-images %}
+	{% page "main_content_image" type="img" %}
+	
+	<div class="blog-post-images">
+    	<img src="{% if page.content.main_content_image %}{% imgix_url page.content.main_content_image %}{% else %}https://placem.at/places{% endif %}?w=500" />
+    </div>
+	
+	{% endblock %}
+	{% endif %}
+	{% page "content" type="wysiwyg" %}
+	
+{% endblock %}
+
+
+
